@@ -1,0 +1,15 @@
+*
+!*.sln
+!**/Dockerfile
+!**/docker-compose.yml
+!**/*.csproj
+!**/*.cs
+
+**/bin/
+**/obj/
+**/*.dbmdl
+**/*.jfm
+**/node_modules/
+**/npm-debug.log
+**/secrets.dev.yaml
+**/values.dev.yaml
