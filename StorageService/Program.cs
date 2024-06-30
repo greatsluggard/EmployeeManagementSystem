@@ -2,7 +2,6 @@ using MassTransit;
 using StorageService;
 using StorageService.Application.DependencyInjection;
 using StorageService.DAL.DependencyInjection;
-using StorageService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +16,7 @@ builder.Services.AddApplication();
 
 builder.Services.AddMassTransit(x =>
 {
-    x.AddConsumer<EmployeeConsumer>();
+    x.AddConsumer<EmployeeConsumer>(); 
 
     x.UsingRabbitMq((context, cfg) =>
     {
@@ -26,8 +25,6 @@ builder.Services.AddMassTransit(x =>
             h.Username("guest");
             h.Password("guest");
         });
-
-        cfg.ConfigureEndpoints(context);
     });
 });
 

@@ -24,7 +24,9 @@ namespace EmployeeService.Controllers
                 return BadRequest();
             }
 
-            await _bus.Publish(employee);
+            var endpoint = await _bus.GetSendEndpoint(new Uri("queue:employee-queue"));
+
+            await endpoint.Send(employee);
 
             return Ok("Employee was sent");
         }
