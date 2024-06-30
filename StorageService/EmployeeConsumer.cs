@@ -15,8 +15,15 @@ namespace StorageService
 
         public async Task Consume(ConsumeContext<Employee> context)
         {
-            var employee = context.Message;
-            await _employeeService.HandleEmployeeAsync(employee);
+            try
+            {
+                var employee = context.Message;
+                await _employeeService.HandleEmployeeAsync(employee);
+            }
+            catch (Exception ex)
+            {
+                throw; 
+            }
         }
     }
 }

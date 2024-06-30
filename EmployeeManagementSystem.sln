@@ -12,11 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageService.DAL", "StorageService.DAL\StorageService.DAL.csproj", "{DFE5E19B-C2D3-4FF7-9E77-EEB33065A9C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageService.DAL", "StorageService.DAL\StorageService.DAL.csproj", "{DFE5E19B-C2D3-4FF7-9E77-EEB33065A9C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageService.Domain", "StorageService.Domain\StorageService.Domain.csproj", "{8FDB35E9-25B2-4053-958D-2140D6A5E46E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageService.Domain", "StorageService.Domain\StorageService.Domain.csproj", "{8FDB35E9-25B2-4053-958D-2140D6A5E46E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageService.Application", "StorageService.Application\StorageService.Application.csproj", "{3F034B5D-DE00-4644-A92E-772B3B61AC7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageService.Application", "StorageService.Application\StorageService.Application.csproj", "{3F034B5D-DE00-4644-A92E-772B3B61AC7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,6 @@
 ﻿using EmployeeService.Model;
 using MassTransit;
+using MassTransit.Transports;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeService.Controllers
@@ -24,7 +25,8 @@ namespace EmployeeService.Controllers
             }
 
             await _bus.Publish(employee);
-            return Ok("Employee was sent.");
+
+            return Ok("Employee was sent");
         }
     }
 }

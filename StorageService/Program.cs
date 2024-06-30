@@ -2,6 +2,7 @@ using MassTransit;
 using StorageService;
 using StorageService.Application.DependencyInjection;
 using StorageService.DAL.DependencyInjection;
+using StorageService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDataAccessLayer(builder.Configuration);
+
+builder.Services.AddApplication();
 
 builder.Services.AddMassTransit(x =>
 {
@@ -22,18 +27,9 @@ builder.Services.AddMassTransit(x =>
             h.Password("guest");
         });
 
-        cfg.ReceiveEndpoint("employee-queue", e =>
-        {
-            e.ConfigureConsumer<EmployeeConsumer>(context);
-        });
-
         cfg.ConfigureEndpoints(context);
     });
 });
-
-builder.Services.AddDataAccessLayer(builder.Configuration);
-
-builder.Services.AddApplication();
 
 var app = builder.Build();
 
