@@ -1,6 +1,6 @@
-﻿using EmployeeService.Model;
+﻿using Contracts;
+using EmployeeService.Model;
 using MassTransit;
-using MassTransit.Transports;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeService.Controllers
@@ -9,11 +9,11 @@ namespace EmployeeService.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : ControllerBase
     {
-        private readonly IBus _bus;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public EmployeesController(IBus bus)
+        public EmployeesController(IPublishEndpoint publishEndpoint)
         {
-            _bus = bus;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpPost]
@@ -24,11 +24,14 @@ namespace EmployeeService.Controllers
                 return BadRequest();
             }
 
-            var endpoint = await _bus.GetSendEndpoint(new Uri("queue:employee-queue"));
+            await _publishEndpoint.Publish(new EmployeeCreatedEvent
+            {
+                Name = employee.Name,
+                LastName = employee.LastName,
+                DepartmentName = employee.DepartmentName
+            });
 
-            await endpoint.Send(employee);
-
-            return Ok("Employee was sent");
+            return Ok("The employee was sent to the queue successfully.");
         }
     }
 }

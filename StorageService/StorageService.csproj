@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\StorageService.Application\StorageService.Application.csproj" />
     <ProjectReference Include="..\StorageService.DAL\StorageService.DAL.csproj" />
   </ItemGroup>

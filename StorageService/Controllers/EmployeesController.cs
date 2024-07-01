@@ -1,5 +1,4 @@
-﻿using MassTransit;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StorageService.Domain.Interfaces.Services;
 using StorageService.Models;
 
@@ -24,7 +23,7 @@ namespace StorageService.Controllers
         }
 
         [HttpGet("employees/{departmentName}")]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeesByDepartment(string departmentName)
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeesByDepartmentName(string departmentName)
         {
             var employees = await _employeeService.GetEmployeesByDepartmentAsync(departmentName);
             return Ok(employees);

@@ -14,19 +14,24 @@ builder.Services.AddDataAccessLayer(builder.Configuration);
 
 builder.Services.AddApplication();
 
-builder.Services.AddMassTransit(x =>
+builder.Services.AddMassTransit(busConfigurator =>
 {
-    x.AddConsumer<EmployeeConsumer>(); 
+    busConfigurator.SetKebabCaseEndpointNameFormatter();
 
-    x.UsingRabbitMq((context, cfg) =>
+    busConfigurator.AddConsumer<EmployeeCreatedConsumer>();
+
+    busConfigurator.UsingRabbitMq((context, config) =>
     {
-        cfg.Host("rabbitmq", "/", h =>
+        config.Host("rabbitmq", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");
         });
+
+        config.ConfigureEndpoints(context);
     });
 });
+
 
 var app = builder.Build();
 

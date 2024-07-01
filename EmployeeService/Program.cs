@@ -7,18 +7,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMassTransit(x =>
+builder.Services.AddMassTransit(busConfigurator =>
 {
+    busConfigurator.SetKebabCaseEndpointNameFormatter();
 
-    x.UsingRabbitMq((context, cfg) =>
+    busConfigurator.UsingRabbitMq((context, config) =>
     {
-        cfg.Host("rabbitmq", "/", h =>
+        config.Host("rabbitmq", "/", h =>
         {
             h.Username("guest");
             h.Password("guest");
         });
 
-        cfg.ConfigureEndpoints(context);
+        config.ConfigureEndpoints(context);
     });
 });
 

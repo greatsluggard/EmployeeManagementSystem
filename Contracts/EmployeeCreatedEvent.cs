@@ -1,6 +1,6 @@
-﻿namespace EmployeeService.Model
+﻿namespace Contracts
 {
-    public class Employee
+    public record class EmployeeCreatedEvent
     {
         public string Name { get; set; }
         public string LastName { get; set; }
