@@ -43,8 +43,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - RabbitMQ__Host=rabbitmq
     depends_on:
-      rabbitmq:
-        condition: service_healthy
+      - rabbitmq
     networks:
       - employee_network
     restart: on-failure
